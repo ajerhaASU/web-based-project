@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+
+    <style>
+        body {
+            background-image: linear-gradient(rgba(112, 106, 106, 0.173), rgb(255, 255, 255));
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-weight: 600;
+            padding: 20px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            width: 100%;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .price {
+            color: rgb(0, 0, 0);
+            font-size: 22px;
+        }
+
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: rgb(0, 0, 0);
+            background-color: rgba(161, 161, 161, 0.541);
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <img src="slider/compact.jpg.webp" alt="Compact car" style="width:100%">
+        <h1>Compact Car</h1>
+        <p class="price"style="color:black;">$24.99 a Day</p>
+        <p>Compact cars offer great mileage and the ease of driving and parking in high traffic areas. Compact cars feature low rates, with slightly more room than economy cars.</p>
+        <p><button>Rent</button></p>
+    </div>
+
+    <div class="card">
+        <img src="slider/economy.jpg.webp" alt="economy car" style="width:100%">
+        <h1>Economy Car</h1>
+        <p class="price"style="color:black;">$19.99 a Day</p>
+        <p>Have low rates and great fuel efficiency, and are slightly smaller than compact cars. They are good for city driving and suitable for four people for short trips, two or three for longer trips.</p>
+        <p><button>Rent</button></p>
+    </div>
+
+    <div class="card">
+        <img src="slider/luxury.jpg.webp" alt="luxury car" style="width:100%">
+        <h1>Luxury Car</h1>
+        <p class="price" style="color:rgb(0, 0, 0);">$99.99 a Day</p>
+        <p>Luxury cars can include upgraded amenities like leather seats, efficient performance, and plenty of room for passengers and luggage. Also, high-end performance engines and luxury interior.</p>
+        <p><button>Rent</button></p>
+    </div>
+
+    <div class="card">
+        <img src="slider/compact_suv.webp" alt="SUV" style="width:100%">
+        <h1>Compact SUV Car</h1>
+        <p class="price" style="color:black;">$34.99  a Day</p>
+        <p>Compact SUVs, like regular compact cars, offer low rates and good fuel efficiency in SUV form. They continue to gain popularity among consumers seeking a well-rounded and economical driving experience.</p>
+        <p><button>Rent</button></p>
+    </div>
+</div>
+
+</body>
+</html>

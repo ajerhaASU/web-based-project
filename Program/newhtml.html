@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* Custom styling */
+        .error-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .error-container .error {
+            margin-left: 10px;
+        }
+
+        .gender-container {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Date and Time</h1>
+    <p id="datetime"></p>
+
+    <h2>Enter Your Perosnal Information For Validation </h2>
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <div class="error-container">
+            <input type="text" id="name" name="name" required>
+            <span class="error" id="nameError"></span>
+        </div>
+
+        <label for="age">Age:</label>
+        <div class="error-container">
+            <input type="number" id="age" name="age" required>
+            <span class="error" id="ageError"></span>
+        </div>
+
+        <label>Gender:</label>
+        <div class="gender-container error-container">
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <span class="error" id="genderError"></span>
+        </div>
+
+        <input type="submit" value="Validate">
+    </form>
+
+    <h2></h2>
+    <textarea id="userDataAndRentingStatus" readonly></textarea>
+
+    <script>
+        function validateForm() {
+            // Your validation logic here
+            var name = document.getElementById('name').value;
+            var age = document.getElementById('age').value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+
+            // Remove existing error messages
+            resetErrors();
+
+            // Check if fields are not empty
+            if (name === '' || /\d/.test(name)) {
+                displayError('name', 'Enter a valid name');
+                return false;
+            }
+
+            if (age === '' || isNaN(age) || age <= 0) {
+                displayError('age', 'Enter a valid age');
+                return false;
+            }
+
+            if (!gender) {
+                displayError('gender', 'Select a gender');
+                return false;
+            }
+
+            // Display user data and renting status if validation passes
+            var userDataAndRentingStatus = 'Name: "' + name + '"\n';
+            userDataAndRentingStatus += 'Age: "' + age + '"\n';
+            userDataAndRentingStatus += 'Gender: "' + gender.value + '"\n\n';
+
+            // Display renting status based on age
+            userDataAndRentingStatus += 'Renting Status: ';
+            userDataAndRentingStatus += (parseInt(age) > 25) ? "Customer validated to rent above age : 25" : 'Couldnt validate user to rent under age : 25';
+
+            document.getElementById('userDataAndRentingStatus').value = userDataAndRentingStatus;
+
+            // Return false to prevent the form from actually submitting
+            return false;
+        }
+
+        function resetErrors() {
+            var errors = document.querySelectorAll('.error');
+            errors.forEach(function (error) {
+                error.textContent = '';
+            });
+        }
+
+        function displayError(fieldName, errorMessage) {
+            var errorElement = document.getElementById(fieldName + 'Error');
+            if (errorElement) {
+                errorElement.textContent = errorMessage;
+            }
+        }
+
+        // Display date and time
+        function updateDateTime() {
+            var now = new Date();
+            var dateTimeString = 'Current Date and Time: ' + now.toLocaleString();
+            document.getElementById('datetime').textContent = dateTimeString;
+        }
+
+        // Update date and time on page load
+        updateDateTime();
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+
+</html>
